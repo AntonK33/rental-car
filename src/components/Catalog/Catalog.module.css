@@ -1,0 +1,185 @@
+.selectStyle{
+  
+    width: 204px;
+    height: 44px;
+    background-color: #F7F7F7;
+    border-radius: 12px;
+    font-family: Manrope;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 20px;
+        letter-spacing: 0%;
+        vertical-align: middle;
+        margin-right: 15px;
+        padding-left: 16px;
+        padding-right: 16px;
+        appearance: none;
+            /* ✅ скрывает дефолтную стрелку */
+            -webkit-appearance: none;
+            /* Safari */
+            -moz-appearance:none;
+            background: #f9f9f9 url('/src/assets/chevron-down.svg') no-repeat right 16px center;
+}
+.carBrendStyle{
+    font-family: Manrope;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 16px;
+        letter-spacing: 0%;
+        vertical-align: middle;
+        color: #8D929A;
+}
+.button{
+    width: 156px;
+        height: 44px;
+        top: 24px;
+        left: 768px;
+        padding-top: 12px;
+        padding-right: 51px;
+        padding-bottom: 12px;
+        padding-left: 51px;
+        border-radius: 12px;
+        background-color: #3470FF;
+        font-family: Manrope;
+            font-weight: 600;
+            font-size: 16px;
+            line-height: 20px;
+            letter-spacing: 0%;
+            color: #FFFFFF;
+}
+.buttonPosition{
+    display: flex;
+    align-items: end;
+}
+.filterPanel{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 70px;
+    margin-top: 70px;
+}
+.inputKmFrom{
+    width: 160px;
+        height: 44px;
+        border-right-width: 1px;
+        border-top-left-radius: 12px;
+        border-bottom-left-radius: 12px;
+        background-color: #F7F7F7;
+        font-family: Manrope;
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 20px;
+            letter-spacing: 0%;
+            vertical-align: middle;
+            color: #101828 !important;
+            border-right: 1px solid #DADDE1;
+            padding-left: 16px;
+}
+.inputKmTo {
+    width: 160px;
+    height: 44px;
+    border-right-width: 1px;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+    background-color: #F7F7F7;
+    font-family: Manrope;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: 0%;
+    vertical-align: middle;
+    color: #101828;
+    margin-right: 15px;
+    padding-left: 16px;
+    
+}
+.inputKmFrom::placeholder {
+    color:#101828;
+    opacity: 1;
+ }
+ .inputKmTo::placeholder {
+     color: #101828;
+     opacity: 1;
+ }
+ .gallery{
+    display: flex;
+    flex-wrap: wrap;
+        flex-grow: 1;
+        justify-content: center;
+        align-items: center;
+        gap: 32px;
+        
+ }
+ .carCard{
+    height: 424px;
+    width: 276;
+    display: flex;
+    flex-direction: column;
+ }
+ .carImage{
+    border-radius: 14px;
+    width: 276px; 
+    height:268px;
+ }
+ .carImageWrapper{
+    width: 276px;
+ }
+ .carTitleRow{
+    display: flex;
+    justify-content: space-between;
+ }
+ .carTitleRow{
+    width: 276px;
+ }
+ .carInfoText{
+    width: 276px;
+ }
+ .carTitle{
+    font-family: Manrope;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 20px;
+        letter-spacing: 0%;
+        vertical-align: middle;
+        color: #101828;
+ }
+ .model{
+    color: #3470FF;
+    margin-right: 5px;
+ }
+ .carPrice{
+    display: flex;
+    align-items: center;
+    font-family: Manrope;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 20px;
+        letter-spacing: 0%;
+        vertical-align: middle;
+        color: #101828;
+        margin-right: 10px;
+ }
+ .carInfoText{
+    font-family: Manrope;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 16px;
+        letter-spacing: 0%;
+        color: #8D929A;
+ }
+ .readMoreBtn{
+    width: 276;
+        height: 44;
+        padding-top: 12px;
+        padding-right: 99px;
+        padding-bottom: 12px;
+        padding-left: 99px;
+        border-radius: 12px;
+        background-color: #3470FF;
+        font-family: Manrope;
+            font-weight: 600;
+            font-size: 16px;
+            line-height: 20px;
+            letter-spacing: 0%;
+            color: #FFFFFF;
+ }

@@ -1,0 +1,118 @@
+import css from "./Catalog.module.css"
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchUrl } from "../../redux/catalog/operations.js";
+
+
+
+export default function Catalog() {
+
+  const dispatch = useDispatch();
+  
+
+  const cars = useSelector(state => state.catalog.items);
+  const { page, totalPages, isLoading } = useSelector(state => state.catalog);
+  const loading = useSelector(state => state.catalog.isLoading);
+  const error = useSelector(state => state.catalog.error);
+  const brands = [...new Set(cars.map(car => car.brand))];
+  console.log("what comes in to cars",cars)
+  console.log("what comes in to brands",brands)
+
+    const handleSearch = () => {
+    
+}
+
+useEffect(() => {
+  dispatch(fetchUrl(page));
+}, [dispatch, page]);
+
+if (loading) return <p>Loading...</p>;
+if (error) return <p>Error: {error}</p>;
+  
+  const handlePageChange = (newPage) => {
+    dispatch(fetchUrl(newPage));
+  };
+
+  
+    return (
+        <div className={css.filterContainer}>
+            <form className={css.filterPanel} onSubmit={handleSearch}>
+            <label>
+  <p className={css.carBrendStyle}>Car brand</p>
+  <select className={css.selectStyle}>
+    <option>Choose a brand</option>
+    {brands.map(brand => (
+      <option key={brand} value={brand}>
+        {brand}
+      </option>
+    ))}
+  </select>
+</label>
+
+  <label>
+    <p className={css.carBrendStyle}>Price / 1 hour</p>
+    <select className={css.selectStyle}>
+      <option>Choose a price</option>
+      <option>$10</option>
+      <option>$20</option>
+    </select>
+  </label>
+
+  <label>
+   <p className={css.carBrendStyle}>Car mileage / km</p> 
+    <div className="rangeBox">
+              <input type="number" placeholder="From" className={css.inputKmFrom} />
+      <input type="number" placeholder="To" className={css.inputKmTo}/>
+    </div>
+  </label>
+          <div className={css.buttonPosition}>
+          <button type="submit" className={css.button}>Search</button>
+      </div>
+ 
+</form>
+
+        
+        <div className={css.gallery}>
+  {cars.map(car => (
+    <div className={css.carCard} key={car.id}>
+      <div className={css.carImageWrapper}>
+        <img src={car.img} alt={`${car.brand} ${car.model}`} className={css.carImage }  />
+        {/* <button className={css.favoriteBtn}>💙</button> */}
+      </div>
+
+      <div className={css.carTitleRow}>
+        <h2 className={css.carTitle}>
+          {car.brand} <span className={css.model}>{car.model},</span>{car.year}
+        </h2>
+        <span className={css.carPrice}>${car.rentalPrice}</span>
+      </div>
+
+      <p className={css.carInfoText}>
+         {car.address.split(',')[1]} |
+        {car.rentalCompany} | {car.type} | {car.mileage.toLocaleString()} km
+      </p>
+
+      <button className={css.readMoreBtn}>Read more</button>
+    </div>
+  ))}
+</div>
+
+<div style={{ display: 'flex', gap: '10px', marginTop: '20px' }}>
+        {Array.from({ length: totalPages }, (_, i) => (
+          <button
+            key={i}
+            onClick={() => handlePageChange(i + 1)}
+            disabled={page === i + 1}
+            style={{ padding: '8px 12px', background: page === i + 1 ? '#347cfb' : '#eee' }}
+          >
+            {i + 1}
+          </button>
+        ))}
+        </div>
+        
+
+      </div>
+     
+      
+    );
+  }

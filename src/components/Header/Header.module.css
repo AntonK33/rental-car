@@ -1,0 +1,51 @@
+.link {
+    display: inline-block;
+    text-decoration: none;
+    font-family: Manrope;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 20px;
+        letter-spacing: 0%;
+        text-align: center;
+}
+.linkCastom{
+    display: inline-block;
+        text-decoration: none;
+        font-family: Manrope;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 20px;
+        letter-spacing: 0%;
+        text-align: center;
+        margin-right: 15px;
+}
+.link.active {
+    color: #e84a5f;
+}
+.header {
+    display: flex;
+    height: 68px;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #F2F4F7;
+    border-bottom: 4px solid white;
+  
+    
+}
+.logoBox{
+    width: 104px;
+    margin-left: 60px;
+    display: flex;
+    align-items: center;
+}
+.headerContainer{
+    width: 1440px;
+    display: flex;
+   justify-content: space-between;
+}
+.navBox{
+    display: flex;
+    width: 110px;
+    align-items: center;
+    margin-right: 60px;
+}
