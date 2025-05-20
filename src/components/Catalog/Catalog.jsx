@@ -1,14 +1,17 @@
 import css from "./Catalog.module.css"
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchUrl } from "../../redux/catalog/operations.js";
+import { fetchUrl, fetchFilteredCars } from "../../redux/catalog/operations.js";
 
 
 
 export default function Catalog() {
-
+  const [selectedBrand, setSelectedBrand] = useState('');
+  const [callFilter, setCallFilter] = useState(false);
   const dispatch = useDispatch();
   
+  // const brand = selectedBrand;
+  console.log("What comes in hte selectedBrand",selectedBrand)
 
   const cars = useSelector(state => state.catalog.items);
   const { page, totalPages, isLoading } = useSelector(state => state.catalog);
@@ -18,32 +21,43 @@ export default function Catalog() {
   console.log("what comes in to cars",cars)
   console.log("what comes in to brands",brands)
 
-    const handleSearch = () => {
-    
-}
-
+   
+  
+  
 useEffect(() => {
   dispatch(fetchUrl(page));
 }, [dispatch, page]);
 
+
+  
+useEffect(() => {
+  if (callFilter && selectedBrand) {
+    dispatch(fetchUrl({ page: 1, brand: selectedBrand }));
+    setCallFilter(false); // сбрасываем флаг
+  }
+}, [callFilter, selectedBrand, dispatch]);
+
+const handleSubmit = (e) => {
+  e.preventDefault();
+  setCallFilter(true); // запускаем второй useEffect
+};
 if (loading) return <p>Loading...</p>;
 if (error) return <p>Error: {error}</p>;
   
-  const handlePageChange = (newPage) => {
-    dispatch(fetchUrl(newPage));
-  };
-
-  
     return (
         <div className={css.filterContainer}>
-            <form className={css.filterPanel} onSubmit={handleSearch}>
+            <form className={css.filterPanel} onSubmit={handleSubmit}>
             <label>
   <p className={css.carBrendStyle}>Car brand</p>
-  <select className={css.selectStyle}>
+            <select className={css.selectStyle}
+              value={selectedBrand}
+              onChange={(e)=>setSelectedBrand(e.target.value)}
+            >
     <option>Choose a brand</option>
     {brands.map(brand => (
       <option key={brand} value={brand}>
         {brand}
+       
       </option>
     ))}
   </select>
@@ -101,7 +115,7 @@ if (error) return <p>Error: {error}</p>;
         {Array.from({ length: totalPages }, (_, i) => (
           <button
             key={i}
-            onClick={() => handlePageChange(i + 1)}
+            onClick={() => setCallFilter(true)}
             disabled={page === i + 1}
             style={{ padding: '8px 12px', background: page === i + 1 ? '#347cfb' : '#eee' }}
           >
