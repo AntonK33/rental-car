@@ -10,9 +10,14 @@ const rentPrice = [
 export default function Catalog() {
   const [selectedBrand, setSelectedBrand] = useState('');
   const [selectedPrice, setSelectedPrice] = useState('');
+  const [selectedMileageFrom, setSelectedMileageFrom] = useState('');
+  const [selectedMileageTo, setSelectedMileageTo] = useState('');
   const [callFilter, setCallFilter] = useState(false);
   const dispatch = useDispatch();
   
+
+  // console.log("what comes in to cars",selectedMileageFrom)
+  //  console.log("what comes in to brands",selectedMileageTo)
   // const brand = selectedBrand;
  // console.log("What comes in hte selectedBrand",selectedBrand)
 
@@ -41,12 +46,26 @@ useEffect(() => {
 
 
   
-useEffect(() => {
-  if (callFilter && selectedBrand) {
-    dispatch(fetchUrl({ page: 1, brand: selectedBrand, rentalPrice: selectedPrice }));
+  useEffect(() => {
+ 
+  if ((callFilter && selectedBrand) || (callFilter && selectedPrice)
+    || (callFilter && selectedMileageFrom) || (callFilter && selectedMileageTo))
+  {
+    const actualBrand = selectedBrand === "Choose a brand" ? "" : selectedBrand;
+    const actualPrice = selectedPrice === "Choose a price" ? "" : selectedPrice;
+    dispatch(fetchUrl({
+      page: 1,
+      brand: actualBrand,
+      rentalPrice: actualPrice,
+      minMileage: selectedMileageFrom,
+      maxMileage: selectedMileageTo,
+    }));
     setCallFilter(false); // сбрасываем флаг
   }
-}, [callFilter, selectedBrand, selectedPrice, dispatch]);
+  
+}, [callFilter, selectedBrand,
+    selectedPrice, selectedMileageFrom,
+    selectedMileageTo, dispatch]);
 
 const handleSubmit = (e) => {
   e.preventDefault();
@@ -94,8 +113,19 @@ if (error) return <p>Error: {error}</p>;
   <label>
    <p className={css.carBrendStyle}>Car mileage / km</p> 
     <div className="rangeBox">
-              <input type="number" placeholder="From" className={css.inputKmFrom} />
-      <input type="number" placeholder="To" className={css.inputKmTo}/>
+              <input
+                type="number"
+                placeholder="From"
+                className={css.inputKmFrom}
+                value={selectedMileageFrom}
+                onChange={(e)=> setSelectedMileageFrom(e.target.value)}
+              />
+              <input type="number"
+                placeholder="To"
+                className={css.inputKmTo}
+                value={selectedMileageTo}
+                onChange={(e)=> setSelectedMileageTo(e.target.value)}
+              />
     </div>
   </label>
           <div className={css.buttonPosition}>
