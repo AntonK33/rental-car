@@ -1,28 +1,39 @@
 import css from "./Catalog.module.css"
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchUrl, fetchFilteredCars } from "../../redux/catalog/operations.js";
+import { fetchUrl} from "../../redux/catalog/operations.js";
+import { fetchBrands } from "../../redux/brands/operations.js";
 
-
-
+const rentPrice = [
+  "$10","$20","$30","$40","$50","$60","$70","$80","$90","$100",
+]
 export default function Catalog() {
   const [selectedBrand, setSelectedBrand] = useState('');
+  const [selectedPrice, setSelectedPrice] = useState('');
   const [callFilter, setCallFilter] = useState(false);
   const dispatch = useDispatch();
   
   // const brand = selectedBrand;
-  console.log("What comes in hte selectedBrand",selectedBrand)
+ // console.log("What comes in hte selectedBrand",selectedBrand)
 
   const cars = useSelector(state => state.catalog.items);
+  const brandsArr = useSelector(state => state.brands.items)
+  // console.log("what comes in to cars",cars)
+  // console.log("what comes in to brands",brandsArr)
+
   const { page, totalPages, isLoading } = useSelector(state => state.catalog);
   const loading = useSelector(state => state.catalog.isLoading);
   const error = useSelector(state => state.catalog.error);
-  const brands = [...new Set(cars.map(car => car.brand))];
-  console.log("what comes in to cars",cars)
-  console.log("what comes in to brands",brands)
+  //const brands = [...new Set(brandsArr.map(car => car.brand))];
+  const brands = brandsArr.map(brand => brand);
+
+  // console.log("what comes in to cars",cars)
+   //console.log("what comes in to brands",brands)
 
    
-  
+  useEffect(() => {
+    dispatch(fetchBrands());
+  }, [dispatch]);
   
 useEffect(() => {
   dispatch(fetchUrl(page));
@@ -32,10 +43,10 @@ useEffect(() => {
   
 useEffect(() => {
   if (callFilter && selectedBrand) {
-    dispatch(fetchUrl({ page: 1, brand: selectedBrand }));
+    dispatch(fetchUrl({ page: 1, brand: selectedBrand, rentalPrice: selectedPrice }));
     setCallFilter(false); // сбрасываем флаг
   }
-}, [callFilter, selectedBrand, dispatch]);
+}, [callFilter, selectedBrand, selectedPrice, dispatch]);
 
 const handleSubmit = (e) => {
   e.preventDefault();
@@ -65,10 +76,18 @@ if (error) return <p>Error: {error}</p>;
 
   <label>
     <p className={css.carBrendStyle}>Price / 1 hour</p>
-    <select className={css.selectStyle}>
+            <select className={css.selectStyle}
+                value={selectedPrice}
+              // onChange={(e)=>setSelectedPrice(e.target.value)}
+              onChange={(e) => setSelectedPrice(e.target.value)}
+
+            >
       <option>Choose a price</option>
-      <option>$10</option>
-      <option>$20</option>
+      {rentPrice.map(rent => (
+  <option key={rent} value={rent.slice(1)}>
+    {rent}
+  </option>
+     ))}
     </select>
   </label>
 

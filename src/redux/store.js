@@ -5,7 +5,7 @@ import {
   persistStore,
   persistReducer, 
   FLUSH,
-  REHYDRATE,
+  REHYDRATE, 
   PAUSE,
   PERSIST,
   PURGE, 
@@ -13,18 +13,24 @@ import {
 } from "redux-persist";
 import storage from 'redux-persist/lib/storage';
 import { catalogReducer } from "./catalog/catalogSlice";
+import { brandsReducer } from "./brands/brandsSlice";
 
 
-const authPersistConfig = {
+const catalogPersistConfig = {
   key:'catalog',
   storage,
   //whitelist: ['token'],
 };
-
+const brandsPersistConfig = {
+  key:'brands',
+   storage,
+   //whitelist: ['token'],
+ };
     export const store = configureStore({
         reducer:{
         
         catalog: catalogReducer,
+          brands: brandsReducer
        
     },
         

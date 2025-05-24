@@ -5,15 +5,17 @@ axios.defaults.baseURL = 'https://car-rental-api.goit.global';
 
 export const fetchUrl = createAsyncThunk(
     "catalog/fetchAll",
-    async ({page=1,brand = ""}, thunkAPI) => {
+    async ({ page = 1, brand = "", rentalPrice = "",limit="", maxMileage="", }, thunkAPI) => {
+        console.log("what comes in to brand,price",brand,rentalPrice,limit,maxMileage);
         try {
             const response = await axios.get("/cars", {
               params: {
                 page,
-                ...(brand && { brand }) // добавляем brand, только если он задан
+                    ...(brand && { brand }), // добавляем brand, только если он задан
+                    ...(rentalPrice && { rentalPrice }) 
               }
             });
-            console.log("Response:", response.data);
+            // console.log("Response:", response.data);
             return response.data;
           } catch (e) {
             return thunkAPI.rejectWithValue(e.message);
@@ -21,21 +23,24 @@ export const fetchUrl = createAsyncThunk(
     }
 )
 
-export const fetchFilteredCars = createAsyncThunk(
-    "catalog/fetchFilteredCars",
-    async ({ brand }, thunkAPI) => {
-        try {
-            const response = await axios.get("/cars",{
-                params: {
-                    brand,
+// export const fetchFilteredCars = createAsyncThunk(
+//     "catalog/fetchFilteredCars",
+//     async ({ brand,price }, thunkAPI) => {
+//         try {
+//             const response = await axios.get("/cars",{
+//                 params: {
+//                     brand,
+//                     price
                    
-                }
-                });
-            console.log("What comes in the response",response.data)
-            return response.data;
-        }
-        catch (e) {
-            return thunkAPI.rejectWithValue(e.message);
-        }
-    }
-)
+//                 }
+//                 });
+//             console.log("What comes in the response",response.data)
+//             return response.data;
+//         }
+//         catch (e) {
+//             return thunkAPI.rejectWithValue(e.message);
+//         }
+//     }
+// )
+
+
