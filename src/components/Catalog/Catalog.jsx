@@ -3,11 +3,14 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUrl} from "../../redux/catalog/operations.js";
 import { fetchBrands } from "../../redux/brands/operations.js";
+import { useNavigate } from "react-router-dom";
 
 const rentPrice = [
   "$10","$20","$30","$40","$50","$60","$70","$80","$90","$100",
 ]
 export default function Catalog() {
+ const navigate = useNavigate()
+
   const [selectedBrand, setSelectedBrand] = useState('');
   const [selectedPrice, setSelectedPrice] = useState('');
   const [selectedMileageFrom, setSelectedMileageFrom] = useState('');
@@ -34,7 +37,10 @@ export default function Catalog() {
 
   // console.log("what comes in to cars",cars)
    //console.log("what comes in to brands",brands)
-
+  const detailedCarDescription = (car) => {
+    //console.log("what comes in to cars",car)
+    navigate("/carInfo",{ state: {car} })
+  }
    
   useEffect(() => {
     dispatch(fetchBrands());
@@ -69,7 +75,7 @@ useEffect(() => {
 
 const handleSubmit = (e) => {
   e.preventDefault();
-  setCallFilter(true); // запускаем второй useEffect
+  setCallFilter(true); 
 };
 if (loading) return <p>Loading...</p>;
 if (error) return <p>Error: {error}</p>;
@@ -155,7 +161,13 @@ if (error) return <p>Error: {error}</p>;
         {car.rentalCompany} | {car.type} | {car.mileage.toLocaleString()} km
       </p>
 
-      <button className={css.readMoreBtn}>Read more</button>
+      <button
+        className={css.readMoreBtn}
+        type="button"
+        onClick={()=> detailedCarDescription(car)}
+      >
+        Read more
+      </button>
     </div>
   ))}
 </div>
