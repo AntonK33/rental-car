@@ -1,18 +1,24 @@
 .image {
     width: 100%;
+
     border-radius: 1rem;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
-
+.imgWrapper{
+    width: 640px;
+    height: 512px;
+    margin-bottom: 40px;
+}
 .wrapper {
-    padding: 2rem;
+    display: flex;
+    flex-direction: row;
+    padding: 60px 20px;
     max-width: 1200px;
     margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2rem;
+    
+   
 }
-
+.linksBar{margin-right: 60px;}
 @media (min-width: 768px) {
     .wrapper {
         grid-template-columns: 1fr 1fr;
@@ -20,26 +26,79 @@
 }
 
 .section {
-    margin-bottom: 1.5rem;
+    margin-top: 70px;
+    
 }
 
 .list {
     padding-left: 1rem;
     list-style: disc;
-    color: #374151;
+    font-family: Manrope;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 20px;
+        letter-spacing: 0%;
+    color: #101828;
+    list-style: none;
+    
 }
-
+.checkItem{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 5px;
+}
+.check{
+    display: flex;
+    flex-direction: row;
+    margin-right: 15px;
+}
+.imgCheck{
+    width: 16px;
+        height: 16px;
+}
 .textGray {
-    color: #6B7280;
+    font-family: Manrope;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 20px;
+        letter-spacing: 0%;
+        color: #101828;
 }
 
 .textBlue {
-    color: #2563EB;
-    font-weight: 600;
+    color: #3470FF;
+    font-family: Manrope;
+        font-weight: 600;
+        font-size: 24px;
+        line-height: 32px;
+        letter-spacing: 0%;
 }
-
+.title{
+    font-family: Manrope;
+        font-weight: 600;
+        font-size: 24px;
+        line-height: 32px;
+        letter-spacing: 0%;
+        text-align: center;
+        color: #101828;
+        text-align: left;
+}
+.locationDescription{
+    font-family: Manrope;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 20px;
+        letter-spacing: 0%;
+        color: #101828;
+}
 .bold {
-    font-weight: bold;
+    font-family: Manrope;
+        font-weight: 600;
+        font-size: 20px;
+        line-height: 24px;
+        letter-spacing: 0%;
+        color: #101828;
 }
 
 .formWrapper {

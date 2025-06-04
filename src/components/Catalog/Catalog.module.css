@@ -20,6 +20,38 @@
             -moz-appearance:none;
             background: #f9f9f9 url('/src/assets/chevron-down.svg') no-repeat right 16px center;
 }
+.is-open .selectStyle{
+    height: 200px;
+}
+.selectStyle[multiple],
+.selectStyle[size] {
+    height: auto;
+    max-height: 150px;
+    /* максимальная высота выпадающего меню */
+    overflow-y: auto;
+    /* прокрутка при большом количестве опций */
+}
+.optionStyle{
+    height: 100px;
+    font-family: Manrope;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 20px;
+        letter-spacing: 0%;
+        vertical-align: middle;
+        color: #8D929A;
+}
+
+.selectStyle option{
+    height: 272px;
+    font-family: Manrope;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 20px;
+        letter-spacing: 0%;
+        vertical-align: middle;
+}
+
 .carBrendStyle{
     font-family: Manrope;
         font-weight: 400;

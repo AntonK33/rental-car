@@ -89,9 +89,9 @@ if (error) return <p>Error: {error}</p>;
               value={selectedBrand}
               onChange={(e)=>setSelectedBrand(e.target.value)}
             >
-    <option>Choose a brand</option>
+    <option className={css.optionStyle}>Choose a brand</option>
     {brands.map(brand => (
-      <option key={brand} value={brand}>
+      <option key={brand} value={brand} className={css.optionStyle}>
         {brand}
        
       </option>

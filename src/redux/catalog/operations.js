@@ -25,24 +25,6 @@ export const fetchUrl = createAsyncThunk(
     }
 )
 
-// export const fetchFilteredCars = createAsyncThunk(
-//     "catalog/fetchFilteredCars",
-//     async ({ brand,price }, thunkAPI) => {
-//         try {
-//             const response = await axios.get("/cars",{
-//                 params: {
-//                     brand,
-//                     price
-                   
-//                 }
-//                 });
-//             console.log("What comes in the response",response.data)
-//             return response.data;
-//         }
-//         catch (e) {
-//             return thunkAPI.rejectWithValue(e.message);
-//         }
-//     }
-// )
+
 
 
