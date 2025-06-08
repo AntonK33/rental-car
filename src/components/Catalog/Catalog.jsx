@@ -4,7 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchUrl} from "../../redux/catalog/operations.js";
 import { fetchBrands } from "../../redux/brands/operations.js";
 import { useNavigate } from "react-router-dom";
-
+import options from "../Select/options.json"
+import SelectCustom from "../Select/SelectCustom.js";
 const rentPrice = [
   "$10","$20","$30","$40","$50","$60","$70","$80","$90","$100",
 ]
@@ -25,7 +26,7 @@ export default function Catalog() {
  // console.log("What comes in hte selectedBrand",selectedBrand)
 
   const cars = useSelector(state => state.catalog.items);
-  const brandsArr = useSelector(state => state.brands.items)
+  const brandsArr = useSelector(state => state.brands.items);
   // console.log("what comes in to cars",cars)
   // console.log("what comes in to brands",brandsArr)
 
@@ -81,7 +82,10 @@ if (loading) return <p>Loading...</p>;
 if (error) return <p>Error: {error}</p>;
   
     return (
-        <div className={css.filterContainer}>
+      <div className={css.filterContainer}>
+
+        <SelectCustom />
+        
             <form className={css.filterPanel} onSubmit={handleSubmit}>
             <label>
   <p className={css.carBrendStyle}>Car brand</p>

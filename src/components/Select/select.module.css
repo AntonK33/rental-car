@@ -1,0 +1,85 @@
+.selectWrapper{
+position: relative;
+    width: 204px;
+        height: 44px;
+        
+        border-radius: 12px;
+        font-family: Manrope;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 20px;
+        letter-spacing: 0%;
+        vertical-align: middle;
+        margin-right: 15px;
+        padding-left: 16px;
+        padding-right: 16px;
+        appearance: none;
+        /* ✅ скрывает дефолтную стрелку */
+        -webkit-appearance: none;
+        /* Safari */
+        -moz-appearance: none;
+        background: #f9f9f9 url('/src/assets/chevron-down.svg') no-repeat right 16px center;
+        align-items: center;
+        justify-content: center;
+        
+
+        
+}
+.placeholder{
+    display: flex;
+    align-items: center;
+    padding: 8px 12px;
+        height: 40px;
+   
+}
+.select{
+    overflow: hidden;
+    background-color: #FFFFFF;
+    position: absolute; 
+    top: calc(100% + 0px);
+      left: 0;
+        z-index: 9999;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        border-radius: 12px;
+        width: 204px;
+        height: 202px;
+        overflow-y: auto;
+
+        opacity: 0;
+            transform: translateY(-10px);
+            pointer-events: none;
+            transition: opacity 0.25s ease, transform 0.25s ease;
+padding: 5px;
+box-sizing: content-box;
+            
+                
+      
+}
+.select::-webkit-scrollbar {
+    width: 6px;
+}
+
+.select::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.select::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+ }
+ 
+.visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto; 
+}
+
+.itemContainer{
+    padding: 5px;
+}
+    
+.hidden {
+     opacity: 0;
+     transform: translateY(-10px);
+    pointer-events: none;   
+  }
