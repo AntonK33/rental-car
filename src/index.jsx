@@ -8,6 +8,7 @@ import "./index.css";
 import "modern-normalize";
 import App from "./components/App";
 import { Toaster } from "react-hot-toast";
+import 'simplebar-react/dist/simplebar.min.css';
 //import { PersistGate } from "redux-persist/lib/integration/react";
 
 ReactDOM.createRoot(document.getElementById("root")).render(

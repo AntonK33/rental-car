@@ -8,23 +8,22 @@ import Select from './Select';
 const SelectCustom = () => {
   const [brand, setBrand] = useState('');
   const options = useSelector(state => state.brands.items);
-  console.log('what comes to options',options
-)
-  const handleMonthSelect = (value) => {
+  // console.log('what comes to options', options);
+  const handleBrandSelect = (value) => {
     setBrand(value);
     console.log(value)
   };
 
-  const selectedMonth = options.find((car) => car === brand);
-console.log("selected brand",selectedMonth)
+  const selectedBrand = options.find((car) => car === brand);
+
   return (
     <div >
       <div>
         <Select
           mode='cells'
           options={options}
-          selected={selectedMonth || null}
-          onChange={handleMonthSelect}
+          selected={selectedBrand || null}
+          onChange={handleBrandSelect}
           placeholder='Choose a brand'
         />
       </div>

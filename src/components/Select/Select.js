@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from "react";
 import  Option  from "./Option";
 //import arrowDown from "../../assets/chevron-down.svg"
 import Styles from "./select.module.css"
+
+
 const Select = (props) => {
     const { selected, options, placeholder, mode, status, onChange, onClose } = props;
     const [isOpen, setIsOpen] = useState(false);
@@ -43,7 +45,7 @@ const Select = (props) => {
         >
           
           <div
-            className={Styles.placeholder}
+            className={`${Styles.placeholder} `}
             data-status={status}
             data-selected={!!selected?.value}
             onClick={handlePlaceholderClick}
@@ -53,23 +55,25 @@ const Select = (props) => {
             {selected || placeholder}
           </div>
             {/* {isOpen && ( */}
-            <div className={Styles.itemContainer}>
-            <ul className={`${Styles.select}  ${isOpen ? Styles.visible : Styles.hidden}`}>
+           
+          
+            <div className={`${Styles.listContainer} ${isOpen ? Styles.visible : Styles.hidden}`}>
+            <ul className={`${Styles.select}`}>
                 
                 {options.map((option) => (
                   
                     <Option
                         className={Styles.item}
+                        selected={selected}
                   key={option}
                   option={option}
                   onClick={() => handleOptionClick(option)}
                 />
               ))}
             </ul>
-
             </div>
-           
-          {/* )} */}
+            
+             
         </div>
       );;
 };
