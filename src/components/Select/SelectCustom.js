@@ -17,17 +17,19 @@ const SelectCustom = () => {
   const selectedBrand = options.find((car) => car === brand);
 
   return (
-    <div >
+   
       <div>
         <Select
           mode='cells'
-          options={options}
+        options={options}
+        kay={brand}
+        value={brand}
           selected={selectedBrand || null}
           onChange={handleBrandSelect}
           placeholder='Choose a brand'
         />
       </div>
-    </div>
+    
   );
 };
 

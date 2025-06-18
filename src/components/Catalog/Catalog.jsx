@@ -23,7 +23,7 @@ export default function Catalog() {
   // console.log("what comes in to cars",selectedMileageFrom)
   //  console.log("what comes in to brands",selectedMileageTo)
   // const brand = selectedBrand;
- // console.log("What comes in hte selectedBrand",selectedBrand)
+  console.log("What comes in hte selectedBrand",selectedBrand)
 
   const cars = useSelector(state => state.catalog.items);
   const brandsArr = useSelector(state => state.brands.items);
@@ -84,15 +84,23 @@ if (error) return <p>Error: {error}</p>;
     return (
       <div className={css.filterContainer}>
 
-        <SelectCustom />
+        
         
             <form className={css.filterPanel} onSubmit={handleSubmit}>
             <label>
-  <p className={css.carBrendStyle}>Car brand</p>
-            <select className={css.selectStyle}
+            <p className={css.carBrendStyle}>Car brand</p>
+            <div className={css.selectCustom} >
+              <SelectCustom
+                onChange={(e) => setSelectedBrand(e.target.value)}
+                value={selectedBrand}
+              />
+            </div>
+            
+            {/* <select className={css.selectStyle}
               value={selectedBrand}
               onChange={(e)=>setSelectedBrand(e.target.value)}
             >
+              
     <option className={css.optionStyle}>Choose a brand</option>
     {brands.map(brand => (
       <option key={brand} value={brand} className={css.optionStyle}>
@@ -100,7 +108,7 @@ if (error) return <p>Error: {error}</p>;
        
       </option>
     ))}
-  </select>
+  </select> */}
 </label>
 
   <label>

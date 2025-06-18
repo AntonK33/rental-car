@@ -1,3 +1,10 @@
+.selectCustom{
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    margin-right: 15px;
+}
+
 .selectStyle{
   
     width: 204px;
