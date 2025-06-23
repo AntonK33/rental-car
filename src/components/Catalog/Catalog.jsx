@@ -7,8 +7,10 @@ import { useNavigate } from "react-router-dom";
 import options from "../Select/options.json"
 import SelectCustom from "../Select/SelectCustom.js";
 const rentPrice = [
-  "$10","$20","$30","$40","$50","$60","$70","$80","$90","$100",
-]
+  "$10", "$20", "$30", "$40", "$50", "$60", "$70", "$80", "$90", "$100",
+];
+const PAGE_SIZE = 10;
+
 export default function Catalog() {
  const navigate = useNavigate()
 
@@ -17,29 +19,35 @@ export default function Catalog() {
   const [selectedMileageFrom, setSelectedMileageFrom] = useState('');
   const [selectedMileageTo, setSelectedMileageTo] = useState('');
   const [callFilter, setCallFilter] = useState(false);
+
+
+   const [page, setPage] = useState(1);
+  console.log("what comes in to page", page)
+  
   const dispatch = useDispatch();
   
 
-  // console.log("what comes in to cars",selectedMileageFrom)
+  
   //  console.log("what comes in to brands",selectedMileageTo)
-  // const brand = selectedBrand;
-  console.log("What comes in hte selectedBrand",selectedBrand)
+ 
+
+  
 
   const cars = useSelector(state => state.catalog.items);
-  const brandsArr = useSelector(state => state.brands.items);
+  //const brandsArr = useSelector(state => state.brands.items);
   // console.log("what comes in to cars",cars)
   // console.log("what comes in to brands",brandsArr)
 
-  const { page, totalPages, isLoading } = useSelector(state => state.catalog);
+  const {  totalPages, isLoading } = useSelector(state => state.catalog);
   const loading = useSelector(state => state.catalog.isLoading);
   const error = useSelector(state => state.catalog.error);
   //const brands = [...new Set(brandsArr.map(car => car.brand))];
-  const brands = brandsArr.map(brand => brand);
+  // const brands = brandsArr.map(brand => brand);
 
   // console.log("what comes in to cars",cars)
-   //console.log("what comes in to brands",brands)
+  
   const detailedCarDescription = (car) => {
-    //console.log("what comes in to cars",car)
+   
     navigate("/carInfo",{ state: {car} })
   }
    
@@ -47,8 +55,9 @@ export default function Catalog() {
     dispatch(fetchBrands());
   }, [dispatch]);
   
-useEffect(() => {
-  dispatch(fetchUrl(page));
+  useEffect(() => {
+    console.log("what comes in to page useEffect", page);
+  dispatch(fetchUrl({page}));
 }, [dispatch, page]);
 
 
@@ -73,6 +82,8 @@ useEffect(() => {
 }, [callFilter, selectedBrand,
     selectedPrice, selectedMileageFrom,
     selectedMileageTo, dispatch]);
+  
+   
 
 const handleSubmit = (e) => {
   e.preventDefault();
@@ -188,7 +199,8 @@ if (error) return <p>Error: {error}</p>;
         {Array.from({ length: totalPages }, (_, i) => (
           <button
             key={i}
-            onClick={() => setCallFilter(true)}
+             //onClick={() => setCallFilter(true)}
+           onClick={() => setPage(prev => prev + 1)}
             disabled={page === i + 1}
             style={{ padding: '8px 12px', background: page === i + 1 ? '#347cfb' : '#eee' }}
           >
